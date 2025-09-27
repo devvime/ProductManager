@@ -1,0 +1,25 @@
+# Build results
+bin/
+obj/
+
+# Rider / VSCode / Visual Studio
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# Sistema
+*.DS_Store
+Thumbs.db
+
+# Pacotes
+*.nupkg
+*.snupkg
+
+# Configuração local
+launchSettings.json
