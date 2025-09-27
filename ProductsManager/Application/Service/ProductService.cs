@@ -1,58 +1,48 @@
-using ProductsManager.Application.Interface;
 using ProductsManager.Application.Model;
+using ProductsManager.Application.Interface;
 
 namespace ProductsManager.Application.Service;
 
-public class ProductService : IProductService
+public class ProductService(IProductEntity productEntity) : IProductService
 {
-    private static List<Product> products =
-    [
-        new Product() { Id = 1, Name = "Monitor", Price = 499.90m, Stocke = 50 },
-        new Product() { Id = 2, Name = "Notebook", Price = 1499.90m, Stocke = 30 }
-    ];
-
+    private readonly IProductEntity productEntity = productEntity;
     public List<Product> GetAll()
     {
+        var products = productEntity.GetAll();
         return products;
     }
 
     public Product? GetById(int id)
     {
-        return products.FirstOrDefault(x => x.Id == id);
-    }
-
-    public void Create(Product request)
-    {
-        products.Add(request);
-    }
-
-    public Product? Update(int id, Product request)
-    {
-        var product = products.FirstOrDefault(x => x.Id == id);
+        var product = productEntity.GetById(id);
 
         if (product is null)
         {
             return null;
         }
 
-        product.Name = request.Name;
-        product.Price = request.Price;
-        product.Stocke = request.Stocke;
+        return product;
+    }
+
+    public void Create(Product request)
+    {
+        productEntity.Create(request);
+    }
+
+    public Product? Update(int id, Product request)
+    {
+        var product = productEntity.Update(id, request);
+
+        if (product is null)
+        {
+            return null;
+        }
 
         return product;
     }
 
     public bool Destroy(int id)
     {
-        var product = products.FirstOrDefault(x => x.Id == id);
-
-        if (product is null)
-        {
-            return false;
-        }
-
-        products.Remove(product);
-
-        return true;
+        return productEntity.Destroy(id);
     }
 }

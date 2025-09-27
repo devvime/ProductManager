@@ -10,7 +10,7 @@ using ProductsManager.Database;
 namespace ProductsManager.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250927040903_CreateDatabase")]
+    [Migration("20250927183703_CreateDatabase")]
     partial class CreateDatabase
     {
         /// <inheritdoc />

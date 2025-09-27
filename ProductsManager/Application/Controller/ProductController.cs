@@ -14,7 +14,7 @@ namespace ProductsManager.Application.Controller
         [HttpGet]
         public ActionResult<List<Product>> Get()
         {
-            return Ok(productService.GetAll());
+            return productService.GetAll();
         }
 
         [HttpGet("{id}")]
@@ -31,7 +31,7 @@ namespace ProductsManager.Application.Controller
         }
 
         [HttpPost]
-        public ActionResult Post(Product request)
+        public ActionResult<Product> Post(Product request)
         {
             productService.Create(request);
             return Created();
@@ -57,10 +57,10 @@ namespace ProductsManager.Application.Controller
 
             if (result)
             {
-                return NotFound($"Product with Id {id} not found.");
+                return Ok($"Product with Id: {id} was deleted.");
             }
 
-            return NoContent();
+            return NotFound($"Product with Id {id} not found.");
         }
     }
 }
