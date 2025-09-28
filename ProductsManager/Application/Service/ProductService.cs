@@ -3,9 +3,9 @@ using ProductsManager.Application.Interface;
 
 namespace ProductsManager.Application.Service;
 
-public class ProductService(IProductEntity productEntity) : IProductService
+public class ProductService(IProductRepository productEntity) : IProductService
 {
-    private readonly IProductEntity productEntity = productEntity;
+    private readonly IProductRepository productEntity = productEntity;
     public List<Product> GetAll()
     {
         var products = productEntity.GetAll();

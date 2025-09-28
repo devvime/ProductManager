@@ -2,7 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using ProductsManager.Application.Entity;
+using ProductsManager.Application.Repository;
 using ProductsManager.Application.Interface;
 using ProductsManager.Application.Service;
 using ProductsManager.Database;
@@ -14,7 +14,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite("Data Source = Products.db"));
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductEntity, ProductEntity>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 
 var jwtConfig = builder.Configuration.GetSection("Jwt");
 var key = Encoding.ASCII.GetBytes(jwtConfig["key"]);

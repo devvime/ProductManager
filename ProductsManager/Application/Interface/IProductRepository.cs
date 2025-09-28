@@ -2,7 +2,7 @@ using ProductsManager.Application.Model;
 
 namespace ProductsManager.Application.Interface;
 
-public interface IProductEntity
+public interface IProductRepository
 {
     public List<Product> GetAll();
 

@@ -2,9 +2,9 @@ using ProductsManager.Application.Interface;
 using ProductsManager.Application.Model;
 using ProductsManager.Database;
 
-namespace ProductsManager.Application.Entity;
+namespace ProductsManager.Application.Repository;
 
-public class ProductEntity(ApplicationDbContext db) : IProductEntity
+public class ProductRepository(ApplicationDbContext db) : IProductRepository
 {
     private readonly ApplicationDbContext db = db;
     
