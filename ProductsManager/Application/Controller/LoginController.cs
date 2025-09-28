@@ -12,16 +12,11 @@ namespace ProductsManager.Application.Controller
         private readonly ILoginService loginService = loginService;
 
         [HttpPost]
-        public ActionResult<Login> Login(Login request)
+        public ActionResult Login(Login request)
         {
             var result = loginService.Execute(request);
 
-            if (result)
-            {
-                return Ok();
-            }
-
-            return Unauthorized();
+            return Ok(result);
         }
     }
 }

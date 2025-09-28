@@ -6,6 +6,7 @@ using ProductsManager.Application.Repository;
 using ProductsManager.Application.Interface;
 using ProductsManager.Application.Service;
 using ProductsManager.Database;
+using ProductsManager.Application.Helper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,9 +17,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlite
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<ICreateUserToken, CreateUserToken>();
 
 var jwtConfig = builder.Configuration.GetSection("Jwt");
-var key = Encoding.ASCII.GetBytes(jwtConfig["key"]);
+var key = Encoding.ASCII.GetBytes(jwtConfig["key"]!);
 
 builder.Services.AddAuthentication(options =>
 {

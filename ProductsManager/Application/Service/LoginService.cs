@@ -1,14 +1,22 @@
+using ProductsManager.Application.Helper;
 using ProductsManager.Application.Interface;
 using ProductsManager.Application.Model;
 
 namespace ProductsManager.Application.Service;
 
-public class LoginService(IConfiguration config) : ILoginService
+public class LoginService : ILoginService
 {
-    private readonly IConfiguration config = config;
+    private readonly ICreateUserToken _createUserToken;
 
-    public bool Execute(Login request)
+    public LoginService(ICreateUserToken createUserToken)
     {
-        return false;
+        _createUserToken = createUserToken;
+    }
+
+    public string Execute(Login request)
+    {
+        // TO DO: lOGIN UseCase
+        var token = _createUserToken.Execute(request);
+        return token;
     }
 }
