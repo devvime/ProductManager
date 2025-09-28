@@ -16,7 +16,7 @@ namespace ProductsManager.Application.Controller
         {
             var result = loginService.Execute(request);
 
-            return Ok(result);
+            return Ok(new { Token = result });
         }
     }
 }
