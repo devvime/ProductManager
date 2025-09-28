@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProductsManager.Application.Interface;
@@ -5,6 +6,7 @@ using ProductsManager.Application.Model;
 
 namespace ProductsManager.Application.Controller
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController(IProductService productService) : ControllerBase
